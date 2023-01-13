@@ -1,4 +1,5 @@
 import java.util.Random;
+
 public class Attack implements GameStats {
     private final String attackName;
     private final int maxDamage;
@@ -13,6 +14,7 @@ public class Attack implements GameStats {
         this.rankRequired = rankRequired;
         this.attackPointCost = attackPointCost;
     }
+
     public Attack(String attackName, int minDamage, int maxDamage, int attackPointCost, int rankRequired) {
         this.attackName = attackName;
         this.maxDamage = maxDamage;
@@ -20,37 +22,42 @@ public class Attack implements GameStats {
         this.rankRequired = rankRequired;
         this.attackPointCost = attackPointCost;
     }
+
     public int getRankRequired() {
         return rankRequired;
     }
+
     public double getDamage() {
         Random random = new Random();
-        if (minDamage==maxDamage){
+        if (minDamage == maxDamage) {
             return maxDamage;
-        }else {
-            return random.nextInt(maxDamage-minDamage)+minDamage;
+        } else {
+            return random.nextInt(maxDamage - minDamage) + minDamage;
         }
     }
+
     private String getDamageToString() {
-        if (minDamage==maxDamage){
-            return  minDamage+"";
-        }else
-            return minDamage +"-"+(maxDamage-1);
+        if (minDamage == maxDamage) {
+            return minDamage + "";
+        } else
+            return minDamage + "-" + (maxDamage - 1);
     }
+
     public int getAttackPointCost() {
         return attackPointCost;
     }
+
     public String getAttackName() {
         return attackName;
     }
 
-    public double calculateDamage(Pokemon pokemon){
-        double damage=getDamage();
-        if (pokemon instanceof ElectricityPokemon){
-            damage=  ((ElectricityPokemon) pokemon).passiveAbilityElectricity(getDamage());
+    public double calculateDamage(Pokemon pokemon) {
+        double damage = getDamage();
+        if (pokemon instanceof ElectricityPokemon) {
+            damage = ((ElectricityPokemon) pokemon).passiveAbilityElectricity(getDamage());
         }
-        if (pokemon.isCriticalAttack()){
-            damage*=CRITICAL_HIT_MULTIPLER;
+        if (pokemon.isCriticalAttack()) {
+            damage *= CRITICAL_HIT_MULTIPLER;
         }
         return damage;
     }
@@ -58,8 +65,8 @@ public class Attack implements GameStats {
     @Override
     public String toString() {
         return "" + this.attackName + "\n(" +
-                "Damage: " + this.getDamageToString() + "\tAttack point cost: "+
-                this.attackPointCost+ "\trank required: "+ this.rankRequired + ")";
+                "Damage: " + this.getDamageToString() + "\tAttack point cost: " +
+                this.attackPointCost + "\trank required: " + this.rankRequired + ")";
 
     }
 }

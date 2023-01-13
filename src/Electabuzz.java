@@ -12,7 +12,7 @@ public class Electabuzz extends  ElectricityPokemon implements Evolve{
         return new Attack[]{getKickAttack(), this.THUNDER, this.THUNDER_PUNCH};
     }
     protected int getMaxRank() {
-        return MAX_RANK_ELECTABUZZ;
+        return this.MAX_RANK_ELECTABUZZ;
     }
     public boolean evolve() {
         boolean upgradeSuccessfully ;

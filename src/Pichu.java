@@ -23,7 +23,7 @@ public class Pichu extends ElectricityPokemon implements Evolve {
         return upgradeSuccessfully;
     }
     public int getMaxRank() {
-        return MAX_RANK_PICHU;
+        return this.MAX_RANK_PICHU;
     }
 
 }

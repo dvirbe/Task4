@@ -14,7 +14,7 @@ public class Salandit extends FirePokemon implements Evolve {
     }
 
     protected int getMaxRank() {
-        return MAX_RANK_SALANDIT;
+        return this.MAX_RANK_SALANDIT;
     }
 
     public boolean evolve() {

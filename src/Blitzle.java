@@ -16,7 +16,7 @@ public class Blitzle extends ElectricityPokemon implements Evolve {
     }
 
     protected int getMaxRank() {
-        return MAX_RANK_BLITZLE;
+        return this.MAX_RANK_BLITZLE;
     }
 
     @Override

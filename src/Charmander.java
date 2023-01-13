@@ -27,6 +27,6 @@ public class Charmander extends FirePokemon implements Evolve {
 
     @Override
     protected int getMaxRank() {
-        return MAX_RANK_CHARMENDER;
+        return this.MAX_RANK_CHARMENDER;
     }
 }

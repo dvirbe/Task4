@@ -24,7 +24,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
         this.KICK_ATTACK = new Attack(KICK_ATTACK_NAME, KICK_ATTACK_DAMAGE, KICK_ATTACK_COST, KICK_ATTACK_RANK_REQUIREMENT);
     }
 
-    public void setAttackList(Attack[] attackList) {
+    protected void setAttackList(Attack[] attackList) {
         this.attackList = attackList;
     }
 
@@ -227,10 +227,10 @@ public boolean canAttack(int rank , int cost){
     }
 
     public Attack[] getAttackList() {
-        return attackList;
+        return this.attackList;
     }
 
     public Attack getKickAttack() {
-        return KICK_ATTACK;
+        return this.KICK_ATTACK;
     }
 }

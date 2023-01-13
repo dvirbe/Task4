@@ -14,6 +14,6 @@ public class Moltres extends FirePokemon {
     }
 
     protected int getMaxRank() {
-        return MAX_RANK_MOLTRES;
+        return this.MAX_RANK_MOLTRES;
     }
 }

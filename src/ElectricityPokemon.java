@@ -1,4 +1,4 @@
-public abstract class ElectricityPokemon extends Pokemon{
+public abstract class ElectricityPokemon extends Pokemon {
 
     private double currentElectricity;
 
@@ -6,6 +6,7 @@ public abstract class ElectricityPokemon extends Pokemon{
         super(name, maxHp, maxAttackPoints);
         this.currentElectricity = BASE_ELECTRICITY;
     }
+
     public double getCurrentElectricity() {
         return currentElectricity;
     }
@@ -16,6 +17,7 @@ public abstract class ElectricityPokemon extends Pokemon{
             this.currentElectricity = BASE_ELECTRICITY;
         }
     }
+
     protected boolean lowHealth() {
         return getCurrentHP() < getMaxHp() * LOW_HEALTH;
     }
@@ -30,7 +32,8 @@ public abstract class ElectricityPokemon extends Pokemon{
             return false;
         }
     }
+
     public double passiveAbilityElectricity(double damage) {
-        return getCurrentElectricity()*damage;
+        return getCurrentElectricity() * damage;
     }
 }

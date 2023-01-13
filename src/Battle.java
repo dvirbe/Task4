@@ -13,7 +13,7 @@ public class Battle implements GameStats{
         this.PLAYER_TWO = playerTwo;
         this.playerTurn = this.PLAYER_ONE;
         defensePokemon = this.PLAYER_TWO;
-        this.turn = 1;
+        this.turn = TURN_DEFAULT;
     }
 
     public boolean gameOver() {
@@ -21,11 +21,11 @@ public class Battle implements GameStats{
     }
 
     public boolean gameOverPlayerOne() {
-        return (this.PLAYER_ONE.getCurrentHP() <= 0);
+        return (this.PLAYER_ONE.getCurrentHP() <= HP_WIN_CONDITION);
     }
 
     public boolean gameOverPlayerTwo() {
-        return (this.PLAYER_TWO.getCurrentHP() <= 0);
+        return (this.PLAYER_TWO.getCurrentHP() <=HP_WIN_CONDITION);
     }
 
     private String winner() {
@@ -63,8 +63,8 @@ public class Battle implements GameStats{
     }
 
     public void startGame() {
-        int criticalAttackCounterPlayer1 = 0;
-        int criticalAttackCounterPlayer2 = 0;
+        int criticalAttackCounterPlayer1 =CRITICAL_ATTACK_COUNTER_DEFAULT;
+        int criticalAttackCounterPlayer2 = CRITICAL_ATTACK_COUNTER_DEFAULT;
 
         while (!gameOver()) {
             criticalAttackCounterPlayer1 = criticalAttackDeterminate(criticalAttackCounterPlayer1);
@@ -76,13 +76,13 @@ public class Battle implements GameStats{
                 this.playerTurn.passiveAbility();
             }
             changePlayerTurn();
-            if (criticalAttackCounterPlayer1 >= 2) {
+            if (criticalAttackCounterPlayer1 >=CRITICAL_ATTACK_DURATION) {
                 this.PLAYER_ONE.setCriticalAttack();
-                criticalAttackCounterPlayer1 = 0;
+                criticalAttackCounterPlayer1 = CRITICAL_ATTACK_COUNTER_DEFAULT;
             }
-            if (criticalAttackCounterPlayer2 >= 2) {
+            if (criticalAttackCounterPlayer2 >= CRITICAL_ATTACK_DURATION) {
                 this.PLAYER_TWO.setCriticalAttack();
-                criticalAttackCounterPlayer2 = 0;
+                criticalAttackCounterPlayer2 = CRITICAL_ATTACK_COUNTER_DEFAULT;
             }
         }
         System.out.println("the winner is " + winner());
@@ -106,16 +106,16 @@ public class Battle implements GameStats{
                     4 - Special Ability
                     """);
             choose = scanner.nextInt();
-        } while (choose < 1 || choose > 4);
+        } while (choose < BATTLE_ATTACK_CASE || choose > BATTLE_SPECIAL_ABILITY_CASE);
         switch (choose) {
-            case 1 -> attack();
-            case 2 -> this.playerTurn.rest();
-            case 3 -> upgrade();
-            case 4 -> specialAttack();
+            case BATTLE_ATTACK_CASE -> attack();
+            case BATTLE_REST_CASE -> this.playerTurn.rest();
+            case BATTLE_EVOLVE_CASE -> evolve();
+            case BATTLE_SPECIAL_ABILITY_CASE -> specialAttack();
         }
     }
 
-    private void upgrade() {
+    private void evolve() {
         boolean upgradeSuccessfully = false;
         if (this.playerTurn instanceof Evolve) {
             upgradeSuccessfully = ((Evolve) this.playerTurn).evolve();
@@ -127,9 +127,9 @@ public class Battle implements GameStats{
 
     private void endTurnBonus() {
         Random random = new Random();
-        int randomHp = random.nextInt(0, 5);
+        int randomHp = random.nextInt(MIN_HEAL_BONUS, MAX_HEAL_BONUS);
         this.playerTurn.addCurrentHP(randomHp);
-        int randomAttackPoint = random.nextInt(0, 5);
+        int randomAttackPoint = random.nextInt(MIN_ATTACK_POINT_BONUS, MAX_ATTACK_POINT_BONUS);
         this.playerTurn.addCurrentAttackPoint(randomAttackPoint);
         System.out.println("end turn bonus : " + randomHp + " HP and " + randomAttackPoint + " AttackPoint");
     }
@@ -165,7 +165,7 @@ public class Battle implements GameStats{
         int index;
         do {
             index = scanner.nextInt();
-        } while (index < 1 || index > this.playerTurn.getAttackList().length);
+        } while (index < KICK_ATTACK_CASE || index > this.playerTurn.getAttackList().length);
         attackSuccessfully = this.playerTurn.performAttacking(defensePokemon, this.playerTurn.getAttackList()[index - 1]);
         if (!attackSuccessfully) {
             menu();
@@ -191,13 +191,13 @@ public class Battle implements GameStats{
 
     public static Pokemon randomPokemon() {
         Random random = new Random();
-        int rad = random.nextInt(0, 6);
-        return switch (rad) {
-            case 0 -> new Pichu();
-            case 1 -> new Electabuzz();
-            case 2 -> new Salandit();
-            case 3 -> new Moltres();
-            case 4 -> new Charmander();
+        int index = random.nextInt(PICHU_CASE, BLITZLE_CASE+1);
+        return switch (index) {
+            case PICHU_CASE -> new Pichu();
+            case ELECTABUZZ_CASE -> new Electabuzz();
+            case SALANDIT_CASE -> new Salandit();
+            case MOLTRES_CASE -> new Moltres();
+            case CHARMANDER_CASE -> new Charmander();
             default -> new Blitzle();
         };
     }
