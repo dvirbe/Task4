@@ -1,0 +1,30 @@
+public interface GameStats {
+    double ATTACK_POINT_MULTIPLER = 0.75;
+    int UPGRADE_HP_COST_LVL_TWO = 20;
+    int UPGRADE_ATTACK_POINT_COST_LVL_TWO = 25;
+    int UPGRADE_HP_COST_LVL_THREE = 30;
+    int UPGRADE_ATTACK_POINT_COST_LVL_THREE = 40;
+    int SPECIAL_ATTACK_DEFAULT = 0;
+    int SPECIAL_ATTACK_MAX = 1;
+    int RANK_TWO = 2;
+    int RANK_THREE = 3;
+    int DEFAULT_RANK = 1;
+    int MIN_WAIT_HEAL = 5;
+    int MAX_WAIT_HEAL = 31;
+    int MIN_WAIT_DAMAGE = 0;
+    int MAX_WAIT_DAMAGE = 41;
+    boolean CRITICAL_ATTACK = true;
+    int CRITICAL_HIT_MULTIPLER = 3;
+    int BASE_ELECTRICITY = 1;
+    double ELECTRICITY_PER_TURN = 0.05;
+    double LOW_HEALTH = 0.2;
+    int HEAL_CASE = 1;
+    int ATTACK_POINT_CASE = 2;
+    int CRITICAL_CASE = 3;
+    String KICK_ATTACK_NAME = "kick attack";
+    int KICK_ATTACK_COST =0;
+    int KICK_ATTACK_DAMAGE = 2;
+    int KICK_ATTACK_RANK_REQUIREMENT = 1;
+    boolean CRITICAL_ATTACK_DEFAULT = false;
+    int PASSIVE_ABILITY_FIRE=0;
+}
