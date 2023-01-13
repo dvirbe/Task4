@@ -102,7 +102,7 @@ public class Battle implements GameStats{
             System.out.println("""
                     1 - List of attacks
                     2 - Rest
-                    3 - Upgrade Pokemon
+                    3 - Evolve Pokemon
                     4 - Special Ability
                     """);
             choose = scanner.nextInt();
@@ -121,6 +121,7 @@ public class Battle implements GameStats{
             upgradeSuccessfully = ((Evolve) this.playerTurn).evolve();
         }
         if (!upgradeSuccessfully) {
+            System.out.println("your pokemon can not evolve");
             menu();
         }
     }
@@ -148,7 +149,8 @@ public class Battle implements GameStats{
                         getPLAYER_TWO().getName() + "\n" + getPLAYER_ONE().getCurrentHP() + "/" + getPLAYER_ONE().getMaxHp() +
                         " HP\t\t\t\t\t\t\t" + getPLAYER_TWO().getCurrentHP() + "/" + getPLAYER_TWO().getMaxHp() + " HP\n" +
                         getPLAYER_ONE().getCurrentAttackPoint() + "/" + getPLAYER_ONE().getMaxAttackPoints() + " AP\t\t\t\t\t\t\t" +
-                        getPLAYER_TWO().getCurrentAttackPoint() + "/" + getPLAYER_TWO().getMaxAttackPoints() + " AP\n\n" + playerTurnName() + "\n"
+                        getPLAYER_TWO().getCurrentAttackPoint() + "/" + getPLAYER_TWO().getMaxAttackPoints() + " AP" + "\nrank "+getPLAYER_ONE().getRank() +
+                        "\t\t\t\t\t\t\t\t\t\trank "  + getPLAYER_TWO().getRank()+"\n\n"+playerTurnName()
         );
     }
 
@@ -180,14 +182,16 @@ public class Battle implements GameStats{
     }
 
     private void specialAttack() {
-        if (!this.playerTurn.canSpecialAttack()) {
-            System.out.println("your pokemon cant use his special ability");
-            menu();
-        } else {
-            System.out.println(this.playerTurn.getName() + " used his special ability");
-            this.playerTurn.specialAttack();
+      if (!this.playerTurn.specialAttack()){
+          System.out.println("your pokemon can not use his special ability");
+    menu();
+        }else {
+          System.out.println(this.playerTurn.getName()+"used his special ability");
+          this.playerTurn.specialAttack();
+      }
+
         }
-    }
+
 
     public static Pokemon randomPokemon() {
         Random random = new Random();
