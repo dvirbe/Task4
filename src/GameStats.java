@@ -14,7 +14,7 @@ public interface GameStats {
     int MIN_WAIT_DAMAGE = 0;
     int MAX_WAIT_DAMAGE = 41;
     boolean CRITICAL_ATTACK = true;
-    int CRITICAL_HIT_MULTIPLER = 3;
+    int CRITICAL_HIT_MULTIPLY = 3;
     int BASE_ELECTRICITY = 1;
     double ELECTRICITY_PER_TURN = 0.05;
     double LOW_HEALTH = 0.2;

@@ -1,54 +1,54 @@
 import java.util.Random;
 
 public class Attack implements GameStats {
-    private final String attackName;
-    private final int maxDamage;
-    private final int minDamage;
-    private final int rankRequired;
-    private final int attackPointCost;
+    private final String ATTACK_NAME;
+    private final int MAX_DAMAGE;
+    private final int MIN_DAMAGE;
+    private final int RANK_REQUIRED;
+    private final int ATTACK_POINT_COST;
 
     public Attack(String attackName, int damage, int attackPointCost, int rankRequired) {
-        this.attackName = attackName;
-        this.maxDamage = damage;
-        this.minDamage = damage;
-        this.rankRequired = rankRequired;
-        this.attackPointCost = attackPointCost;
+        this.ATTACK_NAME = attackName;
+        this.MAX_DAMAGE = damage;
+        this.MIN_DAMAGE = damage;
+        this.RANK_REQUIRED = rankRequired;
+        this.ATTACK_POINT_COST = attackPointCost;
     }
 
     public Attack(String attackName, int minDamage, int maxDamage, int attackPointCost, int rankRequired) {
-        this.attackName = attackName;
-        this.maxDamage = maxDamage;
-        this.minDamage = minDamage;
-        this.rankRequired = rankRequired;
-        this.attackPointCost = attackPointCost;
+        this.ATTACK_NAME = attackName;
+        this.MAX_DAMAGE = maxDamage;
+        this.MIN_DAMAGE = minDamage;
+        this.RANK_REQUIRED = rankRequired;
+        this.ATTACK_POINT_COST = attackPointCost;
     }
 
     public int getRankRequired() {
-        return rankRequired;
+        return RANK_REQUIRED;
     }
 
     public double getDamage() {
         Random random = new Random();
-        if (minDamage == maxDamage) {
-            return maxDamage;
+        if (MIN_DAMAGE == MAX_DAMAGE) {
+            return MAX_DAMAGE;
         } else {
-            return random.nextInt(maxDamage - minDamage) + minDamage;
+            return random.nextInt(MAX_DAMAGE - MIN_DAMAGE) + MIN_DAMAGE;
         }
     }
 
     private String getDamageToString() {
-        if (minDamage == maxDamage) {
-            return minDamage + "";
+        if (MIN_DAMAGE == MAX_DAMAGE) {
+            return MIN_DAMAGE + "";
         } else
-            return minDamage + "-" + (maxDamage - 1);
+            return MIN_DAMAGE + "-" + (MAX_DAMAGE - 1);
     }
 
     public int getAttackPointCost() {
-        return attackPointCost;
+        return ATTACK_POINT_COST;
     }
 
     public String getAttackName() {
-        return attackName;
+        return ATTACK_NAME;
     }
 
     public double calculateDamage(Pokemon pokemon) {
@@ -57,16 +57,16 @@ public class Attack implements GameStats {
             damage = ((ElectricityPokemon) pokemon).passiveAbilityElectricity(getDamage());
         }
         if (pokemon.isCriticalAttack()) {
-            damage *= CRITICAL_HIT_MULTIPLER;
+            damage *= CRITICAL_HIT_MULTIPLY;
         }
         return Math.round(damage);
     }
 
     @Override
     public String toString() {
-        return "" + this.attackName + "\n(" +
+        return "" + this.ATTACK_NAME + "\n(" +
                 "Damage: " + this.getDamageToString() + "\tAttack point cost: " +
-                this.attackPointCost + "\trank required: " + this.rankRequired + ")";
+                this.ATTACK_POINT_COST + "\trank required: " + this.RANK_REQUIRED + ")";
 
     }
 }
