@@ -59,7 +59,8 @@ public class Attack implements GameStats {
         if (pokemon.isCriticalAttack()) {
             damage *= CRITICAL_HIT_MULTIPLY;
         }
-        return Math.round(damage);
+       damage = (double) Math.round(damage * 100) / 100;
+        return damage;
     }
 
     @Override

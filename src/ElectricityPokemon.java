@@ -34,6 +34,10 @@ public abstract class ElectricityPokemon extends Pokemon {
     }
 
     public double passiveAbilityElectricity(double damage) {
-        return getCurrentElectricity() * damage;
+        if (lowHealth()){
+            return damage;
+        }else {
+            return getCurrentElectricity() * damage;
+        }
     }
 }

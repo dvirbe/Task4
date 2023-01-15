@@ -172,7 +172,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
     }
 
     public void setCriticalAttack() {
-        this.criticalAttack = !this.criticalAttack;
+        this.criticalAttack = false;
     }
 
     public boolean enoughRank(int rank) {

@@ -55,7 +55,7 @@ public interface PokemonStats {
     String THUNDER_PUNCH_NAME = "thunder clap";
     int THUNDER_PUNCH__COST = 80;
     int THUNDER_PUNCH_MIN_DAMAGE = 50;
-    int THUNDER_PUNCH_MAX_DAMAGE = 120;
+    int THUNDER_PUNCH_MAX_DAMAGE = 121;
     int THUNDER_PUNCH_RANK_REQUIREMENT = 2;
     double MAX_HP_MOLTRES = 120;
     double MAX_ATTACK_POINT_MOLTRES = 60;
