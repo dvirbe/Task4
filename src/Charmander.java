@@ -18,9 +18,9 @@ public class Charmander extends FirePokemon implements Evolve {
     public boolean evolve() {
         boolean upgradeSuccessfully;
         if (getRank() == DEFAULT_RANK) {
-            upgradeSuccessfully = super.evolvePokemon(NAME_CHARMELEON, DEFAULT_HP_CHARMELEON, DEFAULT_ATTACK_POINT_CHARMELEON);
+            upgradeSuccessfully = super.evolvePokemon(NAME_CHARMELEON, MAX_HP_CHARMELEON, MAX_ATTACK_POINT_CHARMELEON);
         } else {
-            upgradeSuccessfully = super.evolvePokemon(NAME_CHARIZRAD, DEFAULT_HP_CHARIZRAD, DEFAULT_ATTACK_POINT_CHARIZRAD);
+            upgradeSuccessfully = super.evolvePokemon(NAME_CHARIZRAD, MAX_HP_CHARIZRAD, MAX_ATTACK_POINT_CHARIZRAD);
         }
         return upgradeSuccessfully;
     }

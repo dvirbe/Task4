@@ -4,7 +4,7 @@ public class Pichu extends ElectricityPokemon implements Evolve {
     private final Attack ELECTRIC_SURFER;
 
     public Pichu() {
-        super(NAME_PICHU, DEFAULT_HP_PICHU, DEFAULT_ATTACK_POINT_PICHU);
+        super(NAME_PICHU, MAX_HP_PICHU, MAX_ATTACK_POINT_PICHU);
         this.QUICK_ATTACK = new Attack(QUICK_ATTACK_NAME, QUICK_ATTACK_DAMAGE, QUICK_ATTACK_COST , QUICK_ATTACK_RANK_REQUIREMENT);
         this.ELECTRO_BALL = new Attack(ELECTRO_BALL_NAME, ELECTRO_BALL_MIN_DAMAGE,ELECTRO_BALL_MAX_DAMAGE,ELECTRO_BALL__COST ,ELECTRO_BALL_RANK_REQUIREMENT );
         this.ELECTRIC_SURFER = new Attack(ELECTRIC_SURFER_NAME,ELECTRIC_SURFER_MIN_DAMAGE ,ELECTRIC_SURFER_MAX_DAMAGE ,ELECTRIC_SURFER_COST,ELECTRIC_SURFER_RANK_REQUIREMENT);
@@ -16,9 +16,9 @@ public class Pichu extends ElectricityPokemon implements Evolve {
     public boolean evolve() {
         boolean upgradeSuccessfully;
         if (getRank() == DEFAULT_RANK) {
-            upgradeSuccessfully = super.evolvePokemon(NAME_PIKACHU, DEFAULT_HP_PIKACHU, DEFAULT_ATTACK_POINT_PIKACHU);
+            upgradeSuccessfully = super.evolvePokemon(NAME_PIKACHU, MAX_HP_PIKACHU, MAX_ATTACK_POINT_PIKACHU);
         } else {
-            upgradeSuccessfully = super.evolvePokemon(NAME_RAICHU, DEFAULT_HP_RAICHU, DEFAULT_ATTACK_POINT_RAICHU);
+            upgradeSuccessfully = super.evolvePokemon(NAME_RAICHU, MAX_HP_RAICHU, MAX_ATTACK_POINT_RAICHU);
         }
         return upgradeSuccessfully;
     }
