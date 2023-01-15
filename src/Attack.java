@@ -27,7 +27,7 @@ public class Attack implements GameStats {
         return RANK_REQUIRED;
     }
 
-    public double getDamage() {
+    private double getDamage() {
         Random random = new Random();
         if (MIN_DAMAGE == MAX_DAMAGE) {
             return MAX_DAMAGE;

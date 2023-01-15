@@ -7,7 +7,7 @@ public abstract class ElectricityPokemon extends Pokemon {
         this.currentElectricity = BASE_ELECTRICITY;
     }
 
-    public double getCurrentElectricity() {
+    private double getCurrentElectricity() {
         return currentElectricity;
     }
 
@@ -18,7 +18,7 @@ public abstract class ElectricityPokemon extends Pokemon {
         }
     }
 
-    protected boolean lowHealth() {
+    private boolean lowHealth() {
         return getCurrentHP() < getMaxHp() * LOW_HEALTH;
     }
 

@@ -36,8 +36,6 @@ public abstract class FirePokemon extends Pokemon {
             double healthCost = getCurrentHP() / SPECIAL_ABILITY_HEALTH_COST;
             lowerCurrentHP(healthCost);
             lowerCurrentAttackPoint(this.getCurrentAttackPoint());
-
-
             return true;
         } else {
             return false;

@@ -82,13 +82,13 @@ public abstract class Pokemon implements GameStats, PokemonStats {
         return this.rank;
     }
 
-    protected void setRank() {
+    private void setRank() {
         if (canUpgrade(getMaxRank())) {
             this.rank++;
         }
     }
 
-    public boolean canUpgrade(int maxRank) {
+    private boolean canUpgrade(int maxRank) {
         boolean canUpgrade = false;
         if (this.rank == maxRank) {
             System.out.println("max level reached");
@@ -175,11 +175,11 @@ public abstract class Pokemon implements GameStats, PokemonStats {
         this.criticalAttack = false;
     }
 
-    public boolean enoughRank(int rank) {
+    private boolean enoughRank(int rank) {
         return getRank() >= rank;
     }
 
-    public boolean canAttack(int rank, int cost) {
+    protected boolean canAttack(int rank, int cost) {
         return enoughRank(rank) && enoughAttackPoint(cost);
     }
 
@@ -201,11 +201,11 @@ public abstract class Pokemon implements GameStats, PokemonStats {
         }
     }
 
-    public void lowerCurrentHP(double hp) {
+    protected void lowerCurrentHP(double hp) {
         this.currentHP -= hp;
     }
 
-    public void lowerCurrentAttackPoint(double attackPoint) {
+    protected void lowerCurrentAttackPoint(double attackPoint) {
         if (this.currentAttackPoint - attackPoint < 0) {
             this.currentAttackPoint = 0;
         } else {
@@ -233,7 +233,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
         return this.attackList;
     }
 
-    public Attack getKickAttack() {
+    protected Attack getKickAttack() {
         return this.KICK_ATTACK;
     }
 }

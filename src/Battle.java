@@ -67,8 +67,8 @@ public class Battle implements GameStats {
         int criticalAttackCounterPlayer2 = CRITICAL_ATTACK_COUNTER_DEFAULT;
 
         while (!gameOver()) {
-            criticalAttackCounterPlayer1 = criticalAttackDeterminate(criticalAttackCounterPlayer1);
-            criticalAttackCounterPlayer2 = criticalAttackDeterminate(criticalAttackCounterPlayer2);
+            criticalAttackCounterPlayer1 = addCriticalAttackCounter(criticalAttackCounterPlayer1);
+            criticalAttackCounterPlayer2 = addCriticalAttackCounter(criticalAttackCounterPlayer2);
             versusString();
             menu();
             endTurnBonus();
@@ -76,26 +76,27 @@ public class Battle implements GameStats {
                 this.playerTurn.passiveAbility();
             }
             changePlayerTurn();
-            if (criticalAttackCounterPlayer1 >= CRITICAL_ATTACK_DURATION) {
-                this.PLAYER_ONE.setCriticalAttack();
-                criticalAttackCounterPlayer1 = CRITICAL_ATTACK_COUNTER_DEFAULT;
-            }
-            if (criticalAttackCounterPlayer2 >= CRITICAL_ATTACK_DURATION) {
-                this.PLAYER_TWO.setCriticalAttack();
-                criticalAttackCounterPlayer2 = CRITICAL_ATTACK_COUNTER_DEFAULT;
-            }
+            criticalAttackCounterPlayer1 = changeCriticalAttack(criticalAttackCounterPlayer1);
+            criticalAttackCounterPlayer2 = changeCriticalAttack(criticalAttackCounterPlayer2);
         }
         System.out.println("the winner is " + winner());
     }
 
-    public int criticalAttackDeterminate(int criticalAttackCounter) {
-        if (this.playerTurn.isCriticalAttack()) {
-            criticalAttackCounter++;
-        }
-        return criticalAttackCounter;
+    private int changeCriticalAttack(int counter) {
+        if (counter >= CRITICAL_ATTACK_DURATION) {
+            this.PLAYER_TWO.setCriticalAttack();
+            return CRITICAL_ATTACK_COUNTER_DEFAULT;
+        } else return counter;
     }
 
-    public void menu() {
+    private int addCriticalAttackCounter(int counter) {
+        if (this.playerTurn.isCriticalAttack()) {
+            counter++;
+        }
+        return counter;
+    }
+
+    private void menu() {
         Scanner scanner = new Scanner(System.in);
         int choose;
         do {
@@ -135,7 +136,7 @@ public class Battle implements GameStats {
         System.out.println("end turn bonus : " + randomHp + " HP and " + randomAttackPoint + " AttackPoint");
     }
 
-    public String playerTurnName() {
+    private String playerTurnName() {
         if (this.playerTurn == this.PLAYER_ONE) {
             return "Player one turn";
         } else {
@@ -143,7 +144,7 @@ public class Battle implements GameStats {
         }
     }
 
-    public void versusString() {
+    private void versusString() {
         System.out.println(
                 "\t\t\t\t\t\tTurn " + this.turn + "\nplayer1\t\t\t\tVS\t\t\t\tplayer2" + "\n" + getPLAYER_ONE().getName() + "\t\t\t\t\t\t\t\t\t" +
                         getPLAYER_TWO().getName() + "\n" + getPLAYER_ONE().getCurrentHP() + "/" + getPLAYER_ONE().getMaxHp() +
@@ -160,7 +161,7 @@ public class Battle implements GameStats {
         }
     }
 
-    public void attack() {
+    private void attack() {
         Scanner scanner = new Scanner(System.in);
         boolean attackSuccessfully;
         printAttackList();
