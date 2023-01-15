@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Battle implements GameStats{
+public class Battle implements GameStats {
     final private Pokemon PLAYER_ONE;
     final private Pokemon PLAYER_TWO;
     private Pokemon playerTurn;
@@ -25,7 +25,7 @@ public class Battle implements GameStats{
     }
 
     public boolean gameOverPlayerTwo() {
-        return (this.PLAYER_TWO.getCurrentHP() <=HP_WIN_CONDITION);
+        return (this.PLAYER_TWO.getCurrentHP() <= HP_WIN_CONDITION);
     }
 
     private String winner() {
@@ -63,7 +63,7 @@ public class Battle implements GameStats{
     }
 
     public void startGame() {
-        int criticalAttackCounterPlayer1 =CRITICAL_ATTACK_COUNTER_DEFAULT;
+        int criticalAttackCounterPlayer1 = CRITICAL_ATTACK_COUNTER_DEFAULT;
         int criticalAttackCounterPlayer2 = CRITICAL_ATTACK_COUNTER_DEFAULT;
 
         while (!gameOver()) {
@@ -76,7 +76,7 @@ public class Battle implements GameStats{
                 this.playerTurn.passiveAbility();
             }
             changePlayerTurn();
-            if (criticalAttackCounterPlayer1 >=CRITICAL_ATTACK_DURATION) {
+            if (criticalAttackCounterPlayer1 >= CRITICAL_ATTACK_DURATION) {
                 this.PLAYER_ONE.setCriticalAttack();
                 criticalAttackCounterPlayer1 = CRITICAL_ATTACK_COUNTER_DEFAULT;
             }
@@ -149,8 +149,8 @@ public class Battle implements GameStats{
                         getPLAYER_TWO().getName() + "\n" + getPLAYER_ONE().getCurrentHP() + "/" + getPLAYER_ONE().getMaxHp() +
                         " HP\t\t\t\t\t\t\t" + getPLAYER_TWO().getCurrentHP() + "/" + getPLAYER_TWO().getMaxHp() + " HP\n" +
                         getPLAYER_ONE().getCurrentAttackPoint() + "/" + getPLAYER_ONE().getMaxAttackPoints() + " AP\t\t\t\t\t\t\t" +
-                        getPLAYER_TWO().getCurrentAttackPoint() + "/" + getPLAYER_TWO().getMaxAttackPoints() + " AP" + "\nrank "+getPLAYER_ONE().getRank() +
-                        "\t\t\t\t\t\t\t\t\t\trank "  + getPLAYER_TWO().getRank()+"\n\n"+playerTurnName()
+                        getPLAYER_TWO().getCurrentAttackPoint() + "/" + getPLAYER_TWO().getMaxAttackPoints() + " AP" + "\nrank " + getPLAYER_ONE().getRank() +
+                        "\t\t\t\t\t\t\t\t\t\trank " + getPLAYER_TWO().getRank() + "\n\n" + playerTurnName()
         );
     }
 
@@ -182,20 +182,19 @@ public class Battle implements GameStats{
     }
 
     private void specialAttack() {
-      if (!this.playerTurn.specialAttack()){
-          System.out.println("your pokemon can not use his special ability");
-    menu();
-        }else {
-          System.out.println(this.playerTurn.getName()+"used his special ability");
-          this.playerTurn.specialAttack();
-      }
-
+        if (!this.playerTurn.specialAttack()) {
+            System.out.println("your pokemon can not use his special ability");
+            menu();
+        } else {
+            System.out.println(this.playerTurn.getName() + " used his special ability");
+            this.playerTurn.specialAttack();
         }
+    }
 
 
     public static Pokemon randomPokemon() {
         Random random = new Random();
-        int index = random.nextInt(PICHU_CASE, BLITZLE_CASE+1);
+        int index = random.nextInt(PICHU_CASE, BLITZLE_CASE + 1);
         return switch (index) {
             case PICHU_CASE -> new Pichu();
             case ELECTABUZZ_CASE -> new Electabuzz();

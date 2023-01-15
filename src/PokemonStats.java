@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public interface PokemonStats {
     int MAX_RANK_BLITZLE = 2;
     double DEFAULT_HP_BLITZLE = 90;

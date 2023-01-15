@@ -17,7 +17,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
         this.maxHp = maxHp;
         this.currentHP = maxHp;
         this.maxAttackPoints = maxAttackPoints;
-        this.currentAttackPoint = this.maxAttackPoints * ATTACK_POINT_MULTIPLER;
+        this.currentAttackPoint = this.maxAttackPoints * ATTACK_POINT_MULTIPLY;
         this.specialAttackCount = SPECIAL_ATTACK_DEFAULT;
         this.rank = DEFAULT_RANK;
         this.criticalAttack = CRITICAL_ATTACK_DEFAULT;
@@ -156,7 +156,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
             System.out.println(getName() + " evolved into " + name);
             changeStats(name, hpCost, attackPointCost, newHp, newAttackPoint);
             return true;
-        }else return false;
+        } else return false;
     }
 
     protected boolean canSpecialAttack() {
@@ -174,15 +174,18 @@ public abstract class Pokemon implements GameStats, PokemonStats {
     public void setCriticalAttack() {
         this.criticalAttack = !this.criticalAttack;
     }
-    public boolean enoughRank(int rank){
-        return getRank()>= rank;
+
+    public boolean enoughRank(int rank) {
+        return getRank() >= rank;
     }
-public boolean canAttack(int rank , int cost){
-        return enoughRank(rank)&&enoughAttackPoint(cost);
-}
+
+    public boolean canAttack(int rank, int cost) {
+        return enoughRank(rank) && enoughAttackPoint(cost);
+    }
+
     public boolean performAttacking(Pokemon enemy, Attack attack) {
         if (this.enoughAttackPoint(attack.getAttackPointCost())) {
-            if (enoughRank(attack.getRankRequired())){
+            if (enoughRank(attack.getRankRequired())) {
                 double damage = attack.calculateDamage(Pokemon.this);
                 enemy.lowerCurrentHP(damage);
                 lowerCurrentAttackPoint(attack.getAttackPointCost());

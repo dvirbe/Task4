@@ -1,5 +1,5 @@
 public interface GameStats {
-    double ATTACK_POINT_MULTIPLER = 0.75;
+    double ATTACK_POINT_MULTIPLY = 0.75;
     int UPGRADE_HP_COST_LVL_TWO = 20;
     int UPGRADE_ATTACK_POINT_COST_LVL_TWO = 25;
     int UPGRADE_HP_COST_LVL_THREE = 30;
