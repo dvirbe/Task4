@@ -219,6 +219,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
         } else {
             this.currentHP += hp;
         }
+        this.currentHP=(double) Math.round(this.currentHP * 100) / 100;
     }
 
     public void addCurrentAttackPoint(double attackPoint) {

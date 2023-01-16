@@ -17,28 +17,21 @@ public abstract class FirePokemon extends Pokemon {
 
     public boolean specialAttack() {
         Random random = new Random();
-        if (canSpecialAttack()) {
-            addToSpecialAttack();
             int count = 0;
-            boolean attackSuccessfully;
-            while (count < SPECIAL_ABILITY_REPEAT_ATTACK) {
 
+            while (count < SPECIAL_ABILITY_REPEAT_ATTACK) {
                 this.addCurrentAttackPoint(getMaxAttackPoints());
                 int index;
                 do {
                     index = random.nextInt(RANDOM_ATTACK_BASE, getAttackList().length);
                 } while (!canAttack(getAttackList()[index].getRankRequired(), getAttackList()[index].getAttackPointCost()));
-                attackSuccessfully = performAttacking(Battle.getDefensePokemon(), getAttackList()[index]);
-                if (attackSuccessfully) {
+               performAttacking(Battle.getDefensePokemon(), getAttackList()[index]);
                     count++;
-                }
             }
             double healthCost = getCurrentHP() / SPECIAL_ABILITY_HEALTH_COST;
             lowerCurrentHP(healthCost);
             lowerCurrentAttackPoint(this.getCurrentAttackPoint());
             return true;
-        } else {
-            return false;
         }
     }
-}
+

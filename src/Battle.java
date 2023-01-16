@@ -183,7 +183,7 @@ public class Battle implements GameStats {
     }
 
     private void specialAttack() {
-        if (!this.playerTurn.specialAttack()) {
+        if (!this.playerTurn.canSpecialAttack()) {
             System.out.println("your pokemon can not use his special ability");
             menu();
         } else {
