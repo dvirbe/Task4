@@ -1,7 +1,7 @@
 public class Moltres extends FirePokemon {
     private final Attack ASSISTING_HEATER;
     private final Attack FIRE_WING;
-
+    //O(1)
     public Moltres() {
         super(NAME_MOLTRES, MAX_HP_MOLTRES, MAX_ATTACK_POINT_MOLTRES);
         this.ASSISTING_HEATER = new Attack(ASSISITING_HEATER_NAME, ASSISITING_HEATER_MIN_DAMAGE, ASSISITING_HEATER_MAX_DAMAGE, ASSISITING_HEATER_COST, ASSISITING_HEATER_RANK_REQUIREMENT);

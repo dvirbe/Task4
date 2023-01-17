@@ -1,7 +1,7 @@
 public abstract class ElectricityPokemon extends Pokemon {
 
     private double currentElectricity;
-
+    //O(1)
     public ElectricityPokemon(String name, double maxHp, double maxAttackPoints) {
         super(name, maxHp, maxAttackPoints);
         this.currentElectricity = BASE_ELECTRICITY;

@@ -27,7 +27,7 @@ public class Battle implements GameStats {
     public boolean gameOverPlayerTwo() {
         return (this.PLAYER_TWO.getCurrentHP() <= HP_WIN_CONDITION);
     }
-
+    //O(1)
     private String winner() {
         String winner = null;
         if (gameOverPlayerOne()) {
@@ -38,7 +38,7 @@ public class Battle implements GameStats {
         }
         return winner;
     }
-
+    //O(1)
     public Pokemon getPLAYER_ONE() {
         return this.PLAYER_ONE;
     }

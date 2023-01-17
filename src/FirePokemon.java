@@ -1,10 +1,12 @@
 import java.util.Random;
 
 public abstract class FirePokemon extends Pokemon {
+    //O(1)
     public FirePokemon(String name, double hp, double attackPoints) {
         super(name, hp, attackPoints);
     }
 
+    //O(1)
     @Override
     protected void passiveAbility() {
         Random random = new Random();
@@ -15,6 +17,7 @@ public abstract class FirePokemon extends Pokemon {
         }
     }
 
+    //O(n)
     public boolean specialAttack() {
         Random random = new Random();
         int count = 0;
