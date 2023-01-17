@@ -7,7 +7,7 @@ public class Battle implements GameStats {
     private Pokemon playerTurn;
     private static Pokemon defensePokemon;
     private int turn;
-
+    //O(1)
     public Battle(Pokemon playerOne, Pokemon playerTwo) {
         this.PLAYER_ONE = playerOne;
         this.PLAYER_TWO = playerTwo;
@@ -15,15 +15,15 @@ public class Battle implements GameStats {
         defensePokemon = this.PLAYER_TWO;
         this.turn = TURN_DEFAULT;
     }
-
+    //O(1)
     public boolean gameOver() {
         return (gameOverPlayerOne() || gameOverPlayerTwo());
     }
-
+    //O(1)
     public boolean gameOverPlayerOne() {
         return (this.PLAYER_ONE.getCurrentHP() <= HP_WIN_CONDITION);
     }
-
+    //O(1)
     public boolean gameOverPlayerTwo() {
         return (this.PLAYER_TWO.getCurrentHP() <= HP_WIN_CONDITION);
     }
@@ -42,15 +42,15 @@ public class Battle implements GameStats {
     public Pokemon getPLAYER_ONE() {
         return this.PLAYER_ONE;
     }
-
+    //O(1)
     public Pokemon getPLAYER_TWO() {
         return this.PLAYER_TWO;
     }
-
+    //O(1)
     public void setTurn() {
         this.turn++;
     }
-
+    //O(1)
     public void changePlayerTurn() {
         setTurn();
         if (this.playerTurn == this.PLAYER_TWO) {
@@ -61,7 +61,7 @@ public class Battle implements GameStats {
             defensePokemon = this.PLAYER_ONE;
         }
     }
-
+    //O(N)
     public void startGame() {
         int criticalAttackCounterPlayer1 = CRITICAL_ATTACK_COUNTER_DEFAULT;
         int criticalAttackCounterPlayer2 = CRITICAL_ATTACK_COUNTER_DEFAULT;
@@ -81,21 +81,21 @@ public class Battle implements GameStats {
         }
         System.out.println("the winner is " + winner());
     }
-
+    //O(1)
     private int changeCriticalAttack(int counter) {
         if (counter >= CRITICAL_ATTACK_DURATION) {
             this.PLAYER_TWO.setCriticalAttack();
             return CRITICAL_ATTACK_COUNTER_DEFAULT;
         } else return counter;
     }
-
+    //O(1)
     private int addCriticalAttackCounter(int counter) {
         if (this.playerTurn.isCriticalAttack()) {
             counter++;
         }
         return counter;
     }
-
+    //O(1)
     private void menu() {
         Scanner scanner = new Scanner(System.in);
         int choose;
@@ -115,7 +115,7 @@ public class Battle implements GameStats {
             case BATTLE_SPECIAL_ABILITY_CASE -> specialAttack();
         }
     }
-
+    //O(1)
     private void evolve() {
         boolean upgradeSuccessfully = false;
         if (this.playerTurn instanceof Evolve) {
@@ -126,7 +126,7 @@ public class Battle implements GameStats {
             menu();
         }
     }
-
+    //O(1)
     private void endTurnBonus() {
         Random random = new Random();
         int randomHp = random.nextInt(MIN_HEAL_BONUS, MAX_HEAL_BONUS);
@@ -135,7 +135,7 @@ public class Battle implements GameStats {
         this.playerTurn.addCurrentAttackPoint(randomAttackPoint);
         System.out.println("end turn bonus : " + randomHp + " HP and " + randomAttackPoint + " AttackPoint");
     }
-
+    //O(1)
     private String playerTurnName() {
         if (this.playerTurn == this.PLAYER_ONE) {
             return "Player one turn";
@@ -143,7 +143,7 @@ public class Battle implements GameStats {
             return "Player Two turn";
         }
     }
-
+    //O(1)
     private void versusString() {
         System.out.println(
                 "\t\t\t\t\t\tTurn " + this.turn + "\nplayer1\t\t\t\tVS\t\t\t\tplayer2" + "\n" + getPLAYER_ONE().getName() + "\t\t\t\t\t\t\t\t\t" +
@@ -154,7 +154,7 @@ public class Battle implements GameStats {
                         "\t\t\t\t\t\t\t\t\t\trank " + getPLAYER_TWO().getRank() + "\n\n" + playerTurnName()
         );
     }
-
+    //O(N)
     private void printAttackList() {
         for (int i = 0; i < this.playerTurn.getAttackList().length; i++) {
             System.out.println(i + 1 + ")  " + this.playerTurn.getAttackList()[i]);
@@ -177,11 +177,11 @@ public class Battle implements GameStats {
             this.playerTurn.passiveAbility();
         }
     }
-
+    //O(1)
     public static Pokemon getDefensePokemon() {
         return defensePokemon;
     }
-
+    //O(1)
     private void specialAttack() {
         if (!this.playerTurn.canSpecialAttack()) {
             System.out.println("your pokemon can not use his special ability");
@@ -192,7 +192,7 @@ public class Battle implements GameStats {
         }
     }
 
-
+    //O(1)
     public static Pokemon randomPokemon() {
         Random random = new Random();
         int index = random.nextInt(PICHU_CASE, BLITZLE_CASE + 1);

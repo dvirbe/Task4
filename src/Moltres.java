@@ -8,11 +8,11 @@ public class Moltres extends FirePokemon {
         this.FIRE_WING = new Attack(FIRE_WING_NAME, FIRE_WING_DAMAGE, FIRE_WING__COST, FIRE_WING_RANK_REQUIREMENT);
         setAttackList(setAttacks());
     }
-
+    //O(1)
     protected Attack[] setAttacks() {
         return new Attack[]{getKickAttack(), this.ASSISTING_HEATER, this.FIRE_WING};
     }
-
+    //O(1)
     protected int getMaxRank() {
         return this.MAX_RANK_MOLTRES;
     }

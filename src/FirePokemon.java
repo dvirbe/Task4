@@ -19,19 +19,20 @@ public abstract class FirePokemon extends Pokemon {
         Random random = new Random();
             int count = 0;
 
-            while (count < SPECIAL_ABILITY_REPEAT_ATTACK) {
-                this.addCurrentAttackPoint(getMaxAttackPoints());
-                int index;
-                do {
-                    index = random.nextInt(RANDOM_ATTACK_BASE, getAttackList().length);
-                } while (!canAttack(getAttackList()[index].getRankRequired(), getAttackList()[index].getAttackPointCost()));
-               performAttacking(Battle.getDefensePokemon(), getAttackList()[index]);
-                    count++;
-            }
-            double healthCost = getCurrentHP() / SPECIAL_ABILITY_HEALTH_COST;
-            lowerCurrentHP(healthCost);
-            lowerCurrentAttackPoint(this.getCurrentAttackPoint());
-            return true;
+        while (count < SPECIAL_ABILITY_REPEAT_ATTACK) {
+            this.addCurrentAttackPoint(getMaxAttackPoints());
+            int index;
+            do {
+                index = random.nextInt(RANDOM_ATTACK_BASE, getAttackList().length);
+            } while (!canAttack(getAttackList()[index].getRankRequired(), getAttackList()[index].getAttackPointCost()));
+            performAttacking(Battle.getDefensePokemon(), getAttackList()[index]);
+            count++;
         }
+        double healthCost = getCurrentHP() / SPECIAL_ABILITY_HEALTH_COST;
+        lowerCurrentHP(healthCost);
+        lowerCurrentAttackPoint(this.getCurrentAttackPoint());
+        return true;
     }
+
+}
 

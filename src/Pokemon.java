@@ -11,7 +11,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
     private boolean criticalAttack;
     private final Attack KICK_ATTACK;
     private Attack[] attackList;
-
+    //O(1)
     public Pokemon(String name, double maxHp, double maxAttackPoints) {
         this.name = name;
         this.maxHp = maxHp;
@@ -23,23 +23,23 @@ public abstract class Pokemon implements GameStats, PokemonStats {
         this.criticalAttack = CRITICAL_ATTACK_DEFAULT;
         this.KICK_ATTACK = new Attack(KICK_ATTACK_NAME, KICK_ATTACK_DAMAGE, KICK_ATTACK_COST, KICK_ATTACK_RANK_REQUIREMENT);
     }
-
+    //O(1)
     protected void setAttackList(Attack[] attackList) {
         this.attackList = attackList;
     }
-
+    //O(1)
     private void changeName(String newName) {
         this.name = newName;
     }
-
+    //O(1)
     private void changeMaxHp(double newMaxHp) {
         this.maxHp = newMaxHp;
     }
-
+    //O(1)
     private void changeMaxAttackPoint(double newMaxAttackPoint) {
         this.maxAttackPoints = newMaxAttackPoint;
     }
-
+    //O(1)
     protected boolean enoughAttackPoint(double attackPointCost) {
         return (this.currentAttackPoint + attackPointCost) >= 0;
     }
@@ -49,39 +49,39 @@ public abstract class Pokemon implements GameStats, PokemonStats {
     protected abstract void passiveAbility();
 
     protected abstract int getMaxRank();
-
+    //O(1)
     public double getMaxHp() {
         return this.maxHp;
     }
-
+    //O(1)
     public double getCurrentHP() {
         return this.currentHP;
     }
-
+    //O(1)
     public double getMaxAttackPoints() {
         return this.maxAttackPoints;
     }
-
+    //O(1)
     public String getName() {
         return this.name;
     }
-
+    //O(1)
     public int getSpecialAttackCount() {
         return this.specialAttackCount;
     }
-
+    //O(1)
     protected void addToSpecialAttack() {
         this.specialAttackCount++;
     }
-
+    //O(1)
     public double getCurrentAttackPoint() {
         return this.currentAttackPoint;
     }
-
+    //O(1)
     public int getRank() {
         return this.rank;
     }
-
+    //O(1)
     private void setRank() {
         if (canUpgrade(getMaxRank())) {
             this.rank++;
@@ -166,15 +166,15 @@ public abstract class Pokemon implements GameStats, PokemonStats {
     public Pokemon getPokemon() {
         return Pokemon.this;
     }
-
+    //O(1)
     public boolean isCriticalAttack() {
         return this.criticalAttack;
     }
-
+    //O(1)
     public void setCriticalAttack() {
         this.criticalAttack = false;
     }
-
+    //O(1)
     private boolean enoughRank(int rank) {
         return getRank() >= rank;
     }
@@ -212,7 +212,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
             this.currentAttackPoint -= attackPoint;
         }
     }
-
+    //O(1)
     public void addCurrentHP(double hp) {
         if (this.currentHP + hp > this.maxHp) {
             this.currentHP = this.maxHp;
@@ -221,7 +221,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
         }
         this.currentHP=(double) Math.round(this.currentHP * 100) / 100;
     }
-
+    //O(1)
     public void addCurrentAttackPoint(double attackPoint) {
         if (this.currentAttackPoint + attackPoint > this.maxAttackPoints) {
             this.currentAttackPoint = this.maxAttackPoints;
@@ -229,11 +229,11 @@ public abstract class Pokemon implements GameStats, PokemonStats {
             this.currentAttackPoint += attackPoint;
         }
     }
-
+    //O(1)
     public Attack[] getAttackList() {
         return this.attackList;
     }
-
+    //O(1)
     protected Attack getKickAttack() {
         return this.KICK_ATTACK;
     }
