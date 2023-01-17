@@ -111,7 +111,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
         }
         return canUpgrade;
     }
-
+    //O(1)
     protected void rest() {
         Random random = new Random();
         int bonus;
@@ -135,7 +135,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
     }
 
     protected abstract Attack[] setAttacks();
-
+    //O(1)
     protected void changeStats(String name, int hpCost, int attackCost, double newHp, double newAttackPoint) {
         lowerCurrentHP(hpCost);
         lowerCurrentAttackPoint(attackCost);
@@ -158,11 +158,11 @@ public abstract class Pokemon implements GameStats, PokemonStats {
             return true;
         } else return false;
     }
-
+    //O(1)
     protected boolean canSpecialAttack() {
         return (getSpecialAttackCount() < SPECIAL_ATTACK_MAX);
     }
-
+    //O(1)
     public Pokemon getPokemon() {
         return Pokemon.this;
     }
@@ -178,7 +178,7 @@ public abstract class Pokemon implements GameStats, PokemonStats {
     private boolean enoughRank(int rank) {
         return getRank() >= rank;
     }
-
+    //O(1)
     protected boolean canAttack(int rank, int cost) {
         return enoughRank(rank) && enoughAttackPoint(cost);
     }
