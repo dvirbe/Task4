@@ -160,7 +160,7 @@ public class Battle implements GameStats {
             System.out.println(i + 1 + ")  " + this.playerTurn.getAttackList()[i]);
         }
     }
-
+    //O(N)
     private void attack() {
         Scanner scanner = new Scanner(System.in);
         boolean attackSuccessfully;

@@ -17,7 +17,7 @@ public abstract class FirePokemon extends Pokemon {
 
     public boolean specialAttack() {
         Random random = new Random();
-            int count = 0;
+        int count = 0;
 
         while (count < SPECIAL_ABILITY_REPEAT_ATTACK) {
             this.addCurrentAttackPoint(getMaxAttackPoints());
